@@ -21,11 +21,10 @@ func MonitorSites() {
 			}
 			duration := time.Since(startTime)
 
-			if resp.StatusCode == 200 {
-				fmt.Println(site, "Available")
-			} else {
+			if resp.StatusCode != 200 {
 				fmt.Println(site, "Unavailable, status code:", resp.StatusCode)
-
+			} else {
+				fmt.Println(site, "Available")
 			}
 
 			SiteAvailability.Store(site, duration.Seconds())
