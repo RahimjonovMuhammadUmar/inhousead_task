@@ -11,7 +11,7 @@ git clone https://github.com/RahimjonovMuhammadUmar/inhousead_task.git
 cd inhousead_task
 ```
 
-3. Run the app:
+3. **Run the app like this !**:
 ```
 go run *.go
 ```
