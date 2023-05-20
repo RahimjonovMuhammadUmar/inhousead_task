@@ -1,4 +1,3 @@
-## Getting Started
 To run the website locally, please follow these steps:
 
 1. Clone the repository to your local machine:
@@ -11,7 +10,7 @@ git clone https://github.com/RahimjonovMuhammadUmar/inhousead_task.git
 cd inhousead_task
 ```
 
-3. **Run the app like this !**:
+3. **Run the app like this**:
 ```
 go run *.go
 ```
