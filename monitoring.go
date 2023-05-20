@@ -8,11 +8,11 @@ import (
 	"time"
 )
 
-var SiteAvailability sync.Map
+var siteAvailability sync.Map
 
-func MonitorSites() {
+func monitorSites() {
 	for {
-		for _, site := range SiteList {
+		for _, site := range siteList {
 			startTime := time.Now()
 			resp, err := http.Head(site)
 			if err != nil {
@@ -27,7 +27,7 @@ func MonitorSites() {
 				fmt.Println(site, "Available")
 			}
 
-			SiteAvailability.Store(site, duration.Seconds())
+			siteAvailability.Store(site, duration.Seconds())
 		}
 
 		time.Sleep(time.Minute * 1)

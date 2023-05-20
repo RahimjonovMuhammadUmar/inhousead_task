@@ -9,10 +9,10 @@ import (
 	"time"
 )
 
-var SiteList = []string{}
+var siteList = []string{}
 
 func main() {
-	go MonitorSites()
+	go monitorSites()
 
 	websitesFile, err := os.Open("websites.txt")
 	if err != nil {
@@ -22,14 +22,14 @@ func main() {
 
 	scanner := bufio.NewScanner(websitesFile)
 	for scanner.Scan() {
-		SiteList = append(SiteList, fmt.Sprintf("https://%s", scanner.Text()))
+		siteList = append(siteList, fmt.Sprintf("https://%s", scanner.Text()))
 	}
 
 	router := http.NewServeMux()
-	router.HandleFunc("/request", RequestHandler)
-	router.HandleFunc("/min", MinHandler)
-	router.HandleFunc("/max", MaxHandler)
-	router.HandleFunc("/getData", GetDataHandler)
+	router.HandleFunc("/request", requestHandler)
+	router.HandleFunc("/min", minHandler)
+	router.HandleFunc("/max", maxHandler)
+	router.HandleFunc("/getData", getDataHandler)
 
 	httpServer := &http.Server{
 		Addr:         ":8080",

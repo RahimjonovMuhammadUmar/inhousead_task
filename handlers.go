@@ -14,7 +14,7 @@ type EndpointRequests struct {
 
 var endpointRequests = &EndpointRequests{}
 
-func RequestHandler(w http.ResponseWriter, r *http.Request) {
+func requestHandler(w http.ResponseWriter, r *http.Request) {
 	site := fmt.Sprintf("https://%s", r.URL.Query().Get("url"))
 	responseTime := getAccessTime(site)
 	endpointRequests.RequestCount++
@@ -22,19 +22,19 @@ func RequestHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, responseTime, " seconds")
 }
 
-func MinHandler(w http.ResponseWriter, r *http.Request) {
+func minHandler(w http.ResponseWriter, r *http.Request) {
 	minSite := findMinAccessTimeSite()
 	endpointRequests.MinCount++
 	fmt.Fprint(w, minSite)
 }
 
-func MaxHandler(w http.ResponseWriter, r *http.Request) {
+func maxHandler(w http.ResponseWriter, r *http.Request) {
 	maxSite := findMaxAccessTimeSite()
 	endpointRequests.MaxCount++
 	fmt.Fprint(w, maxSite)
 }
 
-func GetDataHandler(w http.ResponseWriter, r *http.Request) {
+func getDataHandler(w http.ResponseWriter, r *http.Request) {
 	data, _ := json.Marshal(*endpointRequests)
 
 	w.Header().Set("Content-Type", "application/json")
